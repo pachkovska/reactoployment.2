@@ -1,38 +1,187 @@
-.App {
+:root {
+  --barGraph1-color: #aab6ca;
+  --barGraph2-color: #c7f0db;
+  --font-color: #47515b;
+}
+
+body {
+  margin: 30px;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--font-color);
+  /* background-color: #e3e7ea; */
+}
+
+h1 {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  justify-content: flex-start;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Occupations {
+  grid-column: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  min-width: max-content;
+}
+
+.Occupations > *, label, select {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--font-color);
+  width: max-content;
+}
+
+select {
+  display: block;
+  margin: 2%;
+}
+label {
+  text-align: center;
+  margin-right: 3%;
+}
+
+.ChartAreaContainer {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 15px 25px 1fr;
+  background-color: white;
+  grid-gap: 5px;
+}
+
+.ChartAreaContainer-dimention {
+  grid-row: 1;
+  grid-column: 1 / span 3;
+  display: block;
+  text-align: center;
+}
+
+ .Graph1 {
+  grid-column: 1;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.Graph2 {
+  align-items: flex-start;
+  grid-column: 3;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+} 
+
+.Graph1 > div {
+  background-color: var(--barGraph1-color);
+  box-sizing: border-box;
+  height: 40px;
+  margin-bottom: 5px;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  box-shadow: rgba(0, 0, 0) 1px 2px 3px;
+  min-width: max-content;
+}
+
+.Years {
+  grid-row: 3;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
+}
+
+.Years > div {
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.Graph2 > div {
+  background-color: var(--barGraph2-color);
+  box-sizing: border-box;
+  height: 40px;
+  margin-bottom: 5px;
+  font-size: 10px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid rgba(10, 10, 10, 0.15);
+  box-shadow: rgba(0, 0, 0) 1px 2px 3px;
+  min-width: max-content;
+}
+
+.ChartAreaContainer-leftLabel {
+  grid-column: 1;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.ChartAreaContainer-rightLabel {
+  grid-column: 3;
+  justify-self: end;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.Graph1-bar:hover, .Graph2-bar:hover {
+  animation: Spin 0.5s;
+  animation-direction: alternate;
+  animation-iteration-count: 1;
+}
+
+.center-element {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Areas-label {
+  display: block;
+  text-align: center;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.Card--style {
+  padding: 15px;
+  border: 1px solid rgba(115, 115, 115, 0.15);
+  box-shadow: rgba(0, 0, 0) 2px 4px 8px;
+  transition: all .3s ease-in-out;
+  margin: 0 0 5% 0;
+  background-color: white;
+}
+
+.Card--style:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  margin-top: -1px;
+}
+
+@keyframes Spin {
+  from { 
+      transform: rotate3d(0, 0, 0, 0deg);    
   }
-  to {
-    transform: rotate(360deg);
+  to   { 
+      transform: rotate3d(1, 0, 0, 180deg);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .Container, .Occupations {
+    display: block;
+    text-align: center;
+  }
+
+  .Card--style {
+    width: 80vw;
   }
 }
