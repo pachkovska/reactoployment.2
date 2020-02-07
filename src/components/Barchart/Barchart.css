@@ -1,0 +1,52 @@
+.Graph1 {
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  
+  .Graph2 {
+    align-items: flex-start;
+    grid-column: 3;
+    grid-row: 3;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+  } 
+  
+  .Graph1 > div {
+    background-color: var(--barGraph1-color);
+    box-sizing: border-box;
+    height: 40px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid rgba(10, 10, 10, 0.15);
+    box-shadow: rgba(0, 0, 0) 1px 2px 3px;
+    min-width: max-content;
+  }
+
+  .Graph2 > div {
+    background-color: var(--barGraph2-color);
+    box-sizing: border-box;
+    height: 40px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid rgba(10, 10, 10, 0.15);
+    box-shadow: rgba(0, 0, 0) 1px 2px 3px;
+    min-width: max-content;
+  }
+
+
+.Graph1-bar:hover, .Graph2-bar:hover {
+    animation: Spin 0.5s;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+  }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import Dropdown from './components/Dropdown/Dropdown.js';
-import Barchart from './components/Barchart/Barchart.js';
+import ButterflyChart from './components/ButterflyChart/ButterflyChart.js';
 
 class App extends Component {
 
 state = {
       data: [],
-      areas: ["California", "Chico MSA", "Sacramento--Roseville--Arden-Arcade MSA", "Redding MSA", "Oakland-Hayward-Berkeley Metro Div", "Napa MSA", "Modesto MSA", "Merced MSA", "Madera MSA", "Los Angeles-Long Beach-Glendale Metro Div", "San Jose-Sunnyvale-Santa Clara MSA", "San Francisco-Redwood City-South San Francisco Metro Div"],
+      areas: ["California", "Chico MSA", "Sacramento--Roseville--Arden-Arcade MSA", "Oakland-Hayward-Berkeley Metro Div", "Napa MSA", "Modesto MSA", "Los Angeles-Long Beach-Glendale Metro Div", "San Jose-Sunnyvale-Santa Clara MSA", "San Francisco-Redwood City-South San Francisco Metro Div"],
       area_selection: "California",
       occupation_select_1 : "",
       occupation_select_2 : "",
@@ -82,34 +82,14 @@ state = {
                   onDropDownOptions={this.onOptionChange} 
                 />
             </div>
-            <div className="ChartAreaContainer Card--style">
-                <div className="ChartAreaContainer-dimention">Number of employed</div>
-                <div className="ChartAreaContainer-leftLabel">{this.state.occupation_select_1}
-                </div>
-                <div className="ChartAreaContainer-rightLabel">{this.state.occupation_select_2}
-                </div>
-                <Barchart
-                  data={this.state.data}
-                  occupation={this.state.occupation_select_1}
-                  graph="Graph1"
-                  graphBar="Graph1-bar"
-                  highest_employed={this.state.highest_employed} 
-                />
-                <div className="Years">
-                  {
-                    this.state.data.filter(el => el.occupational_title === this.state.occupation_select_1 && el.year > 2010).map(el => (el.occupational_title === this.state.occupation_select_1 && el.year > 2010 ?
-                    <div>{el.year}</div> : null
-                    ))
-                  }
-                </div>
-                <Barchart
-                  data={this.state.data}
-                  occupation={this.state.occupation_select_2}
-                  graph="Graph2"
-                  graphBar="Graph2-bar"
-                  highest_employed={this.state.highest_employed} 
-                />
-            </div>
+            <ButterflyChart 
+              occupation_select_1={this.state.occupation_select_1}
+              occupation_select_2={this.state.occupation_select_2}
+              data={this.state.data}
+              highest_employed={this.state.highest_employed}
+            >
+              
+            </ButterflyChart>
         </div>    
     </div>
     );

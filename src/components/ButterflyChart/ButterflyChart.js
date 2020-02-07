@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import Barchart from './Barchart/Barchart.js';
+import Barchart from '../Barchart/Barchart.js';
+
+import './ButterflyChart.css';
 
 class ButterflyChart extends Component {
 
     render() {
 
+    const years = []
+
     return (
         <div className="ChartAreaContainer Card--style">
                 <div className="ChartAreaContainer-dimention">Number of employed</div>
-                <div className="ChartAreaContainer-leftLabel">{this.props.occupation_select_1}
-                </div>
-                <div className="ChartAreaContainer-rightLabel">{this.props.occupation_select_2}
-                </div>
+                <div className="ChartAreaContainer-leftLabel">{this.props.occupation_select_1}</div>
+                <div className="ChartAreaContainer-rightLabel">{this.props.occupation_select_2}</div>
                 <Barchart
                   data={this.props.data}
                   occupation={this.props.occupation_select_1}
@@ -21,7 +23,13 @@ class ButterflyChart extends Component {
                 />
                 <div className="Years">
                   { 
-                    [new Set(this.props.data.filter(el => el.year > 2010))].map(<div>{el.year}</div>)
+                    this.props.data && (this.props.occupation_select_1 || this.props.occupation_select_2) &&
+                    this.props.data.filter(el => el.year > 2010).forEach(element => {
+                        (!years.includes(element.year) && years.push(element.year))
+                    })
+                  }
+                  {
+                      years.map(year => <div>{year}</div>)
                   }
                 </div>
                 <Barchart

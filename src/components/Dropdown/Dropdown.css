@@ -1,0 +1,31 @@
+
+.Occupations {
+    grid-column: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: max-content;
+  }
+  
+  .Occupations > *, label, select {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--font-color);
+    width: max-content;
+  }
+  
+  select {
+    display: block;
+    margin: 2%;
+  }
+
+  label {
+    text-align: center;
+    margin-right: 3%;
+  }
+
+  .Areas-label {
+    display: block;
+    width: 100%;
+  }
