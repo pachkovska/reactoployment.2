@@ -1,4 +1,4 @@
-# Reactoployment app   
+# Reactoployment app v2   
 allows users easily to see employment statistics for different occupations in the state of California. User can zoom in to see statistics for smaller parts of California and compare 2 occupations.
 
 Application uses California Employment Employment Development Department Api to pull displayed statistics. 
