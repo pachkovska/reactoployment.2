@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Dropdown from './components/Dropdown/Dropdown.js';
+import Barchart from './components/Barchart/Barchart.js';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ state = {
         this.setState({
           data : data.filter(el => el.year > 2010).filter(el => el.occupational_title.length < 20), //filter out noisy results 
         });
+        console.log(data)
     });
   }
 
@@ -61,32 +63,24 @@ state = {
         <div  className="Area--select center-element">
           <Dropdown
             options={this.state.areas}
-            onDropDownOptions={this.onAreaChange}> 
-          </ Dropdown>
+            onDropDownOptions={this.onAreaChange} 
+          /> 
         </div>
         <div className="Container">
             <div className="Occupations">
                 <label>Choose occupations to compare:</label>
-                <select name="occupation_select_1" id="first-select" onChange={this.onOptionChange}>
-                    {
-                      this.state.data.map(title => (
-                      <option value={title.occupational_title}>{title.occupational_title}</ option> 
-                        ))
-                    }
-                </select>
                 <Dropdown
-                name="occupation_select_1"
-                id="first-select"
-                options={this.state.data}>
-
-                </Dropdown>
-                <select name="occupation_select_2" className="OccupationDropdown" id="second-select" onChange={this.onOptionChange}>
-                    {
-                      this.state.data.map(title => (
-                      <option value={title.occupational_title}>{title.occupational_title}</ option>
-                        ))
-                    }
-                </select>
+                  name="occupation_select_1"
+                  id="first-select"
+                  options={this.state.data}
+                  onDropDownOptions={this.onOptionChange} 
+                />
+                <Dropdown
+                  name="occupation_select_2"
+                  id="second-select"
+                  options={this.state.data}
+                  onDropDownOptions={this.onOptionChange} 
+                />
             </div>
             <div className="ChartAreaContainer Card--style">
                 <div className="ChartAreaContainer-dimention">Number of employed</div>
@@ -94,13 +88,13 @@ state = {
                 </div>
                 <div className="ChartAreaContainer-rightLabel">{this.state.occupation_select_2}
                 </div>
-                <div className="Graph1">
-                    {
-                      this.state.data.map((el) => (el.occupational_title === this.state.occupation_select_1 && el.year > 2010 ? 
-  <div className="Graph1-bar"  style={{ width: Number(el.number_of_employed)/this.state.highest_employed * 100 + '%' }}>{el.number_of_employed}</div> : null
-                      ))
-                    }
-                </div> 
+                <Barchart
+                  data={this.state.data}
+                  occupation={this.state.occupation_select_1}
+                  graph="Graph1"
+                  graphBar="Graph1-bar"
+                  highest_employed={this.state.highest_employed} 
+                />
                 <div className="Years">
                   {
                     this.state.data.filter(el => el.occupational_title === this.state.occupation_select_1 && el.year > 2010).map(el => (el.occupational_title === this.state.occupation_select_1 && el.year > 2010 ?
@@ -108,13 +102,13 @@ state = {
                     ))
                   }
                 </div>
-                <div className="Graph2">
-                      {
-                        this.state.data.map(el => (el.occupational_title === this.state.occupation_select_2 && el.year > 2010 ? 
-                        <div className="Graph2-bar" style={{ width: Number(el.number_of_employed)/this.state.highest_employed * 100 + '%' }}>{el.number_of_employed}</ div>  : null
-                        ))
-                      }
-                </div>
+                <Barchart
+                  data={this.state.data}
+                  occupation={this.state.occupation_select_2}
+                  graph="Graph2"
+                  graphBar="Graph2-bar"
+                  highest_employed={this.state.highest_employed} 
+                />
             </div>
         </div>    
     </div>

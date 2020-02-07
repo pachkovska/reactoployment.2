@@ -8,7 +8,8 @@ class Dropdown extends Component {
             <select onChange={this.props.onDropDownOptions} name={this.props.name} id={this.props.id}>
             {   
                 this.props.options && this.props.options.map(option => (
-                <option value={option}>{option}</ option>
+                <option value={ option.occupational_title ? option.occupational_title : option }>
+                    {option.occupational_title ? option.occupational_title : option}</ option>
               ))
             }
             </select>
