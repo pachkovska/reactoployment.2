@@ -90,7 +90,8 @@ state = {
             >
               
             </ButterflyChart>
-        </div>    
+        </div> 
+        <p>*Missing bars on the chart means there is no data available.</p>   
     </div>
     );
   }
